@@ -1,11 +1,11 @@
 import React, { useEffect, useState } from 'react'
-import style from "./BlankLayout.module.css";
+import style from "./AuthNav.module.css";
 
-export default function BlankLayout() {
+export default function AuthNav() {
     let [count, setCount]= useState(0);
     useEffect(()=>{},[]);
 
   return (
-    <div>BlankLayout</div>
+    <div>AuthNav</div>
   )
 }

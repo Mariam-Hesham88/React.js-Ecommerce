@@ -1,14 +1,38 @@
 import { useState } from 'react'
 import './App.css'
+import { createBrowserRouter, RouterProvider } from 'react-router-dom'
+
+import Login from './components/Login/Login';
+import Register from './components/Register/Register';
+import Home from './components/Home/Home';
+import Products from './components/Products/Products';
+import Categories from './components/Categories/Categories';
+import Cart from './components/Cart/Cart';
+import Brands from './components/Brands/Brands';
+import ProductDetails from './components/ProductDetails/ProductDetails';
+import NotFound from './components/NotFound/NotFound';
+import AuthLayout from './components/authLayout/authLayout';
+import BlankLayout from './components/blankLayout/blankLayout';
 
 function App() {
-  const [count, setCount] = useState(0)
+  let router = createBrowserRouter([
+    {path:'',element:<AuthLayout/> , children:[
+      {index:true, element:<Login/>},
+      {path:'register', element:<Register/>}
+    ]},
+    {path:'',element:<BlankLayout/> , children:[
+      {index:true, element:<Home/>},
+      {path:'products', element:<Products/>},
+      {path:'category', element:<Categories/>},
+      {path:'cart', element:<Cart/>},
+      {path:'brand', element:<Brands/>},
+      {path:'productDetails', element:<ProductDetails/>},
+      {path:'*', element:<NotFound/>}
+    ]},
+  ]);
 
-  return <>
-    <h1 className="text-3xl font-bold underline text-blue-600">
-      Hello Tailwind!
-    </h1>
-  </>
+
+  return <> <RouterProvider router={router}></RouterProvider></>
 
 }
 
