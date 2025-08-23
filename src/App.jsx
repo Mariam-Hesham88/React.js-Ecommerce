@@ -23,14 +23,13 @@ function App() {
     {path:'',element:<BlankLayout/> , children:[
       {index:true, element:<Home/>},
       {path:'products', element:<Products/>},
-      {path:'category', element:<Categories/>},
+      {path:'categories', element:<Categories/>},
       {path:'cart', element:<Cart/>},
-      {path:'brand', element:<Brands/>},
+      {path:'brands', element:<Brands/>},
       {path:'productDetails', element:<ProductDetails/>},
       {path:'*', element:<NotFound/>}
     ]},
   ]);
-
 
   return <> <RouterProvider router={router}></RouterProvider></>
 

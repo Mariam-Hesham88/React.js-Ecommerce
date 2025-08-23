@@ -1,1 +1,11 @@
-.Footer {}
+.footerTitle{
+    font-size: 38px;
+    font-weight: 900;
+    line-height: 48px;
+    cursor: pointer;
+    color: black;
+}
+
+footer{
+    color: #6b7280
+}

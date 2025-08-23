@@ -5,6 +5,52 @@
 @tailwind utilities;
 
 
-body{
+body {
     font-family: "Inter", sans-serif;
+}
+
+.heroTitle {
+    font-size: 64px;
+    font-weight: 900;
+    line-height: 65px;
+}
+
+.footerTitle {
+    font-size: 40px;
+    font-weight: 900;
+    line-height: 60px;
+}
+
+.mainTitle {
+    font-size: 48px;
+    font-weight: 900;
+    line-height: 58px;
+}
+
+.productTitle {
+    font-size: 20px;
+    font-weight: 700;
+    line-height: 30px;
+}
+
+.price {
+    font-size: 24px;
+    font-weight: 600;
+    line-height: 29px;
+}
+
+.cr {
+    cursor: pointer;
+}
+
+.mainBtn {
+    color: #fff;
+    background-color: #000;
+    border-radius: 8px;
+    padding: 8px 16px;
+    transition: background-color .5s;
+}
+
+.mainBtn:hover {
+    background-color: #2E485D;
 }

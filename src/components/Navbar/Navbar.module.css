@@ -1,1 +1,11 @@
-.Navbar {}
+.navTitle{
+    font-size: 38px;
+    font-weight: 900;
+    line-height: 48px;
+    cursor: pointer;
+}
+
+ul li{
+    cursor: pointer;
+    font-weight: 600;
+}

@@ -6,7 +6,6 @@ import Footer from '../Footer/Footer';
 
 export default function AuthLayout() {
     let [count, setCount]= useState(0);
-    useEffect(()=>{},[]);
 
   return<>
   <AuthNav/>
