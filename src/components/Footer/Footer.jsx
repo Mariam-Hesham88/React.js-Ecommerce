@@ -9,7 +9,7 @@ export default function Footer() {
 
   return <>
     <footer>
-      <div className="up lg:flex lg:justify-center bg-black rounded-3xl p-10 m-4">
+      <div className="up lg:flex lg:justify-center bg-black rounded-3xl p-10 pt-0 m-4">
         <div className="w-full lg:w-1/2">
           <h1 className="text-white font-[900] text-[30px] lg:text-[40px] leading-[40px] lg:leading-[60px] uppercase"> STAY UPTO DATE ABOUT OUR LATEST OFFERS </h1>
         </div>
@@ -19,9 +19,9 @@ export default function Footer() {
         </div>
       </div>
 
-      <div className="down bg-gray-200 p-6 lg:py-12">
+      <div className="down bg-gray-100 p-6">
 
-        <div className="lg:flex p-6 lg:flex-nowrap lg:py-12">
+        <div className="lg:flex p-6 lg:flex-nowrap">
           <div className="lg:w-1/4 w-full logo py-6">
             <h1 to="" className={style.footerTitle}>SHOP.CO</h1>
             <p className="text-sm py-2">
