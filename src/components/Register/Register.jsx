@@ -11,7 +11,7 @@ export default function Register() {
   let [isLoading, setIsLoading] = useState(false);
   let navigate = useNavigate();
 
-  let {setUserLogin} = useContext(UserContext);
+  let { setUserLogin } = useContext(UserContext);
 
   let validationSchema = Yup.object().shape({
     name: Yup.string().min(3, 'The name must be equal or more than 3 character').max(25, 'The name must be less than 25 character').required('Required'),
@@ -25,18 +25,20 @@ export default function Register() {
     setIsLoading(true);
     axios.post(`https://ecommerce.routemisr.com/api/v1/auth/signup`, formValue)
       .then((apiResponse) => {
-        if (apiResponse?.response?.data?.message === 'success') {
+        console.log(apiResponse);
+        if (apiResponse?.data?.message === "success") {
           localStorage.setItem('userToken', apiResponse.data.token)
           setUserLogin(apiResponse.data.token);
           navigate('/');
           setIsLoading(false);
         }
-        // console.log(apiResponse)
       })
-      .catch((apiResponse) => {
+      .catch((error) => {
         setIsLoading(false);
-        setApiErorr(apiResponse?.response?.data?.message);
+        setApiErorr(error?.response?.data?.message || "Something went wrong, please try again.");
+        console.log(error.response?.data);
       });
+
   }
 
   let formik = useFormik({
@@ -74,7 +76,7 @@ export default function Register() {
 
           <div className="mt-3">
             <label htmlFor="email" className=" font-[500] ps-2">Email:</label>
-            <input value={formik.values.email} onChange={formik.handleChange} onBlur={formik.handleBlur} type="email" name="email" id="email" placeholder="Enter Your email" className="rounded-full w-full py-2 px-4" />
+            <input value={formik.values.email} onChange={formik.handleChange} onBlur={formik.handleBlur} type="email" name="email" id="email" placeholder="Enter Your Email" className="rounded-full w-full py-2 px-4" />
           </div>
           {formik.errors.email && formik.touched.email ?
             <div className="text-sm text-red-800 rounded-lg p-4 my-1 bg-red-50">
@@ -84,7 +86,7 @@ export default function Register() {
 
           <div className="mt-3">
             <label htmlFor="phone" className=" font-[500] ps-2">Phone:</label>
-            <input value={formik.values.phone} onChange={formik.handleChange} onBlur={formik.handleBlur} type="text" name="phone" id="phone" placeholder="Enter Your Phone" className="rounded-full w-full py-2 px-4" />
+            <input value={formik.values.phone} onChange={formik.handleChange} onBlur={formik.handleBlur} type="tel" name="phone" id="phone" placeholder="Enter Your Phone" className="rounded-full w-full py-2 px-4" />
           </div>
           {formik.errors.phone && formik.touched.phone ?
             <div className="text-sm text-red-800 rounded-lg p-4 my-1 bg-red-50">
@@ -104,7 +106,7 @@ export default function Register() {
 
           <div className="mt-3">
             <label htmlFor="rePassword" className=" font-[500] ps-2">RePassword:</label>
-            <input value={formik.values.rePassword} onChange={formik.handleChange} onBlur={formik.handleBlur} type="password" name="rePassword" id="repassword" placeholder="Please Enter The password again" className="rounded-full w-full py-2 px-4" />
+            <input value={formik.values.rePassword} onChange={formik.handleChange} onBlur={formik.handleBlur} type="password" name="rePassword" id="rePassword" placeholder="Please Enter The password again" className="rounded-full w-full py-2 px-4" />
           </div>
           {formik.errors.rePassword && formik.touched.rePassword ?
             <div className="text-sm text-red-800 rounded-lg p-4 my-1 bg-red-50">
@@ -113,7 +115,7 @@ export default function Register() {
 
 
           <div className="mt-3">
-            <button type='submit' className="mainBtn w-full">
+            <button type='submit' className="mainBtn w-full" disabled={isLoading}>
               {isLoading ? <i className="fas fa-circle-notch fa-spin"></i> : 'Register'}
             </button>
             <Link to="/login" className="underline text-black">I already have an account</Link>

@@ -8,7 +8,6 @@ export default {
     extend: {
       main: "#000",
       second: "#2E485D",
-      rate: "#FFC633",
       true: "#01AB31",
     },
   },

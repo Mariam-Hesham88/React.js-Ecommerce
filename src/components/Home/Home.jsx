@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import style from "./Home.module.css";
 import hero from '../../assets/images/hero.png';
+import Products from '../Products/Products';
 
 export default function Home() {
   let [count, setCount] = useState(0);
@@ -16,17 +17,17 @@ export default function Home() {
         <button className=' w-[400px] lg:w-[200px] py-3 mainBtn'>Shop Now</button>
         <div className="flex flex-wrap justify-center pt-8">
           <div className="item w-1/2 lg:w-1/3">
-            <h2 className='text-[25px] font-[600] leading-[30px] text-[34px] leading-[40px]'>200+</h2>
+            <h2 className='text-[25px] font-[600] leading-[30px] lg:text-[34px] lg:leading-[40px]'>200+</h2>
             <p className='text-second'>International Brands</p>
           </div>
 
           <div className="item w-1/2 lg:w-1/3">
-            <h2 className='text-[25px] font-[600] leading-[30px] text-[34px] leading-[40px]'>2,000+</h2>
+            <h2 className='text-[25px] font-[600] leading-[30px] lg:text-[34px] lg:leading-[40px]'>2,000+</h2>
             <p className='text-second'>High-Quality Products</p>
           </div>
 
           <div className="item w-1/2 lg:w-1/3">
-            <h2 className='text-[25px] font-[600] leading-[30px] text-[34px] leading-[40px]'>30,000+</h2>
+            <h2 className='text-[25px] font-[600] leading-[30px] lg:text-[34px] lg:leading-[40px]'>30,000+</h2>
             <p className='text-second'>Happy Customers</p>
           </div>
 
@@ -39,8 +40,17 @@ export default function Home() {
       </div>
     </section>
 
-    <section className='brands bg-black'>
-
+    <section className='brands bg-black flex text-white py-3 px-2'>
+      <div className="w-1/5">
+        <h1>hello</h1>
+      </div>
     </section>
+
+    <div className="py-10">
+      <h1 className='uppercase mainTitle text-center pb-8'>new arrivals</h1>
+      <div className="">
+        <Products/>
+      </div>
+    </div>
   </>
 }

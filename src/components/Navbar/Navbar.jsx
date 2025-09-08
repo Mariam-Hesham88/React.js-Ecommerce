@@ -7,14 +7,14 @@ import { UserContext } from '../../context/userContext';
 export default function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
   let navigate = useNavigate();
-  // let {userLogin, setUserLogin} = useContext(UserContext);
-  let [userLogin, setUserLogin] = useState(true);
+  let {userLogin, setUserLogin} = useContext(UserContext);
+  // let [userLogin, setUserLogin] = useState(true);
 
   function handleLogOut(){
     localStorage.removeItem('userToken');
-    // setUserLogin(null);
-    setUserLogin(false);
-    navigate('/');
+    setUserLogin(null);
+    // setUserLogin(false);
+    navigate('/login');
   }
 
   return <>
