@@ -29,7 +29,7 @@ function App() {
         { path: 'categories', element: <ProtectedRoute> <Categories/> </ProtectedRoute> },
         { path: 'cart', element: <ProtectedRoute> <Cart/> </ProtectedRoute> },
         { path: 'brands', element: <ProtectedRoute> <Brands /> </ProtectedRoute> },
-        { path: 'productDetails', element: <ProtectedRoute> <ProductDetails /> </ProtectedRoute> },
+        { path: 'productDetails/:id/:category', element: <ProtectedRoute> <ProductDetails /> </ProtectedRoute> },
         { path: 'login', element: <Login /> },
         { path: 'register', element: <Register /> },
         { path: '*', element: <NotFound /> }
