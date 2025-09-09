@@ -2,10 +2,35 @@ import React, { useEffect, useState } from 'react'
 import style from "./Home.module.css";
 import hero from '../../assets/images/hero.png';
 import Products from '../Products/Products';
+import Slider from "react-slick";
+import axios from 'axios';
 
 export default function Home() {
-  let [count, setCount] = useState(0);
-  useEffect(() => { }, []);
+  let [brands, setBrands] = useState([]);
+
+  function getAllBrands() {
+    axios.get(`https://ecommerce.routemisr.com/api/v1/brands`)
+      .then(({ data }) => {
+        console.log(data.data);
+        setBrands(data.data);
+      })
+      .catch((error) => {
+        console.log(error);
+      })
+  }
+
+
+  useEffect(() => {
+    getAllBrands();
+  }, []);
+
+  var settings = {
+    dots: false,
+    infinite: true,
+    speed: 100,
+    slidesToShow: 1,
+    slidesToScroll: 1,
+  };
 
   return <>
     <section className="hero py-10 flex flex-wrap bg-gray-100">
@@ -40,16 +65,20 @@ export default function Home() {
       </div>
     </section>
 
-    <section className='brands bg-black flex text-white py-3 px-2'>
-      <div className="w-1/5">
-        <h1>hello</h1>
+    <section className='brands flex flex-wrap bg-black text-white py-3 px-2'>
+      <div className="w-1/2 mx-auto">
+        <Slider {...settings}>
+          {brands.map((brand) =>
+            <h1 className='text-[30px] font-[700] text-center'>{brand.name}</h1>
+          )}
+        </Slider>
       </div>
     </section>
 
     <div className="py-10">
       <h1 className='uppercase mainTitle text-center pb-8'>new arrivals</h1>
       <div className="">
-        <Products/>
+        <Products />
       </div>
     </div>
   </>

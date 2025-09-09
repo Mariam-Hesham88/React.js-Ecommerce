@@ -1,21 +1,25 @@
 import React, { useEffect, useState } from 'react'
 import style from "./ProductDetails.module.css";
-import hero from '../../assets/images/hero.png';
 import { Link, useParams } from 'react-router-dom';
 import axios from 'axios';
+import Slider from "react-slick";
 
 export default function ProductDetails() {
   let [productDetails, setProductDetails] = useState(null);
   let [relatedProduct, setRelatedProduct] = useState([]);
   let {id, category} = useParams();
+  let [isLoading, setIsLoading] = useState(false);
 
   function getProductDetails(id){
+    setIsLoading(true);
     axios.get(`https://ecommerce.routemisr.com/api/v1/products/${id}`)
     .then(({data})=>{
+      setIsLoading(false);
       console.log(data.data);
       setProductDetails(data.data);
     })
     .catch((error)=>{
+      setIsLoading(false);
       console.log(error);
     })
   }
@@ -37,13 +41,29 @@ export default function ProductDetails() {
   useEffect(() => { 
     getProductDetails(id);
     getAllProduct(category);
+    window.scrollTo(0, 0);
   }, [id, category]);
 
+  var settings = {
+    dots: true,
+    infinite: true,
+    speed: 500,
+    slidesToShow: 1,
+    slidesToScroll: 1,
+  };
+
   return <>
+    {isLoading?
+    <div className="flex justify-center items-center h-screen">
+        <span className="text-2xl font-bold animate-pulse">Loading...</span>
+      </div>
+    : 
     <section className='mx-auto lg:w-[90%]'>
       <div className="flex flex-wrap justify-center items-center">
         <div className="w-full md:w-1/3 p-20">
-          <img src={productDetails?.imageCover} alt={productDetails?.title} className='w-full' />
+        <Slider {...settings}>
+          {productDetails?.images.map((src)=><img src={src} alt={productDetails?.title} className='w-full' /> )}
+        </Slider>
         </div>
         <div className="w-full md:w-2/3 px-6">
           <h1 className='font-[700] text-[30px]'>{productDetails?.title}</h1>
@@ -57,6 +77,7 @@ export default function ProductDetails() {
         </div>
       </div>
     </section>
+    }
 
     <section className="related">
       <div className="py-6">
