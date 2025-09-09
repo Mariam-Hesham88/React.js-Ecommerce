@@ -1,24 +1,41 @@
-import React, { useContext, useState } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import style from "./Navbar.module.css";
 import { Link, NavLink, useNavigate } from 'react-router-dom';
 import { AnimatePresence, motion } from "framer-motion";
 import { UserContext } from '../../context/userContext';
+import { Dropdown, DropdownItem } from "flowbite-react";
+import axios from 'axios';
 
 export default function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
   let navigate = useNavigate();
-  let {userLogin, setUserLogin} = useContext(UserContext);
-  // let [userLogin, setUserLogin] = useState(true);
+  let { userLogin, setUserLogin } = useContext(UserContext);
+  let [categories, setCategories] = useState([]);
+  
+  function getAllCategories() {
+    axios.get(`https://ecommerce.routemisr.com/api/v1/categories`)
+      .then(({ data }) => {
+        console.log(data.data);
+        setCategories(data.data);
+      })
+      .catch((error) => {
+        console.log(error);
+      })
+  }
 
-  function handleLogOut(){
+  function handleLogOut() {
     localStorage.removeItem('userToken');
     setUserLogin(null);
     // setUserLogin(false);
     navigate('/login');
   }
 
+  useEffect(()=>{
+    getAllCategories();
+  },[])
+
   return <>
-    <nav className="px-6 lg:px-14 py-8 flex md:flex-col lg:flex-row justify-center items-center lg:justify-between bg-white ">
+    <nav className="px-6 lg:px-14 py-6 flex md:flex-col lg:flex-row justify-center items-center lg:justify-between bg-white fixed top-0 right-0 left-0">
 
       {/* Burger Icon - Visible on Mobile */}
       <div className="md:hidden px-3">
@@ -39,7 +56,17 @@ export default function Navbar() {
             <ul className="flex items-center gap-6">
               <li><NavLink to="" className="hover:text-gray-600">Home</NavLink></li>
               <li><NavLink to="products" className="hover:text-gray-600">Products</NavLink></li>
-              <li><NavLink to="categories" className="hover:text-gray-600">Categories</NavLink></li>
+              <li>
+                <Dropdown label="Categories" dismissOnClick={false} className='foonr-[600] text-[17px] hover:text-gray-600 text-black'>
+                  {categories?.map((category) => (
+                    <DropdownItem key={category._id}>
+                      <NavLink to={`/categories/${category.name}`} className="w-full block text-start">
+                        {category.name}
+                      </NavLink>
+                    </DropdownItem>
+                  ))}
+                </Dropdown>
+              </li>
               <li><NavLink to="brands" className="hover:text-gray-600">Brands</NavLink></li>
             </ul>
           </div> : null}
@@ -55,7 +82,7 @@ export default function Navbar() {
             <input
               type="search"
               placeholder="Search"
-              className="pl-10 border rounded-[24px] py-2 px-3 w-[280px] lg:w-[400px] bg-gray-200"
+              className="pl-10 border rounded-[24px] py-2 px-3 w-[280px] lg:w-[400px] bg-gray-100"
             />
           </div>
           <i className="fa-solid fa-cart-shopping text-xl"></i>
@@ -83,7 +110,17 @@ export default function Navbar() {
             <ul className="flex flex-col gap-4">
               <li><NavLink to="" className="hover:text-gray-600">Home</NavLink></li>
               <li><NavLink to="products" className="hover:text-gray-600">Products</NavLink></li>
-              <li><NavLink to="categories" className="hover:text-gray-600">Categories</NavLink></li>
+              <li>
+                <Dropdown label="Categories" dismissOnClick={false} className='foonr-[600] text-[17px] hover:text-gray-600 text-black'>
+                  {categories?.map((category) => (
+                    <DropdownItem key={category._id}>
+                      <NavLink to={`/categories/${category.name}`} className="w-full block text-start">
+                        {category.name}
+                      </NavLink>
+                    </DropdownItem>
+                  ))}
+                </Dropdown>
+              </li>
               <li><NavLink to="brands" className="hover:text-gray-600">Brands</NavLink></li>
             </ul>
 
@@ -91,7 +128,7 @@ export default function Navbar() {
               <input
                 type="search"
                 placeholder="Search"
-                className="border rounded-[24px] py-2 px-3 bg-gray-200"
+                className="border rounded-[24px] py-2 px-3 bg-gray-100"
               />
               <button className="mainBtn" onClick={handleLogOut}> Sign Out </button>
             </div>

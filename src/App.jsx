@@ -26,7 +26,7 @@ function App() {
       path: '', element: <BlankLayout />, children: [
         { index: true, element: <ProtectedRoute> <Home/> </ProtectedRoute> },
         { path: 'products', element: <ProtectedRoute> <Products/> </ProtectedRoute> },
-        { path: 'categories', element: <ProtectedRoute> <Categories/> </ProtectedRoute> },
+        { path: 'categories/:categoryName', element: <ProtectedRoute> <Categories/> </ProtectedRoute> },
         { path: 'cart', element: <ProtectedRoute> <Cart/> </ProtectedRoute> },
         { path: 'brands', element: <ProtectedRoute> <Brands /> </ProtectedRoute> },
         { path: 'productDetails/:id/:category', element: <ProtectedRoute> <ProductDetails /> </ProtectedRoute> },
