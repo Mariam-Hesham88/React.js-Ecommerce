@@ -35,7 +35,7 @@ export default function Navbar() {
   },[])
 
   return <>
-    <nav className="px-6 lg:px-14 py-6 flex md:flex-col lg:flex-row justify-center items-center lg:justify-between bg-white fixed top-0 right-0 left-0">
+    <nav className="px-6 z-50 lg:px-14 py-6 flex md:flex-col lg:flex-row justify-center items-center lg:justify-between bg-white fixed top-0 right-0 left-0">
 
       {/* Burger Icon - Visible on Mobile */}
       <div className="md:hidden px-3">
@@ -87,7 +87,8 @@ export default function Navbar() {
           </div>
           <i className="fa-solid fa-cart-shopping text-xl"></i>
           <button className="mainBtn" onClick={handleLogOut}>Sign Out</button>
-        </div> :
+        </div> 
+        :
         <div className="hidden md:flex justify-center items-center gap-6">
           <Link className="mainBtn" to="login">Login</Link>
           <Link className="mainBtn" to="register">Register</Link>

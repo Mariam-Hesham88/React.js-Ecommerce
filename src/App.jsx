@@ -11,17 +11,12 @@ import Cart from './components/Cart/Cart';
 import Brands from './components/Brands/Brands';
 import ProductDetails from './components/ProductDetails/ProductDetails';
 import NotFound from './components/NotFound/NotFound';
-// import AuthLayout from './components/authLayout/authLayout';
 import BlankLayout from './components/blankLayout/blankLayout';
 import UserContextProvider, { UserContext } from './context/userContext';
 import ProtectedRoute from './components/ProtectedRoute/ProtectedRoute';
 
 function App() {
   let router = createBrowserRouter([
-    // {path:'',element:<AuthLayout/> , children:[
-    //   {path:'login', element:<Login/>},
-    //   {path:'register', element:<Register/>}
-    // ]},
     {
       path: '', element: <BlankLayout />, children: [
         { index: true, element: <ProtectedRoute> <Home/> </ProtectedRoute> },

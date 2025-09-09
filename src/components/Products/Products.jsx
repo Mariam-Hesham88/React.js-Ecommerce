@@ -32,11 +32,11 @@ export default function Products() {
       :
       <div className="flex flex-wrap px-11">
         {products.map((product) =>
-          <div key={product.id} className="product p-8 w-full md:w-1/4 lg:w-1/5 ">
+          <div key={product.id} className="product p-5 w-full md:w-1/4 lg:w-1/5 ">
             <Link to={`/productDetails/${product.id}/${product.category.name}`}>
-              <div className='rounded-t-3xl border border-black hover:shadow-2xl cr'>
+              <div className='rounded-t-3xl border border-black  hover:shadow-2xl duration-[0.5s] overflow-hidden group cr'>
                 <div className="img rounded-3xl">
-                  <img src={product.imageCover} alt={product.title} className="w-full rounded-t-3xl" />
+                  <img src={product.imageCover} alt={product.title} className="w-full rounded-t-3xl  transition-transform group-hover:scale-110" />
                 </div>
                 <div className='p-5'>
                   <h3>{product.category.name}</h3>
@@ -51,7 +51,7 @@ export default function Products() {
             </Link>
           </div>
         )}
-      </div >
+      </div>
     }
   </>
 }

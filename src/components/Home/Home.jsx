@@ -27,9 +27,11 @@ export default function Home() {
   var settings = {
     dots: false,
     infinite: true,
-    speed: 100,
-    slidesToShow: 1,
+    speed: 1500,
+    slidesToShow: 5,
     slidesToScroll: 1,
+    autoplay:true,
+    arrows:false,
   };
 
   return <>
@@ -66,7 +68,7 @@ export default function Home() {
     </section>
 
     <section className='brands flex flex-wrap bg-black text-white py-3 px-2'>
-      <div className="w-1/2 mx-auto">
+      <div className="w-full mx-auto">
         <Slider {...settings}>
           {brands.map((brand) =>
             <h1 className='text-[30px] font-[700] text-center'>{brand.name}</h1>

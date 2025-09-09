@@ -2,14 +2,12 @@ import React, { useEffect, useState } from 'react'
 import style from "./Footer.module.css";
 import apple from "../../assets/images/apple.png";
 import google from "../../assets/images/google.png";
-import mastercard from "../../assets/images/mastercard.webp";
-import paypal from "../../assets/images/paypal.png";
 
 export default function Footer() {
 
   return <>
     <footer>
-      <div className="up lg:flex lg:justify-center bg-black rounded-3xl p-10 pt-0 m-4">
+      <div className="up lg:flex lg:justify-center bg-black rounded-3xl p-10 m-4">
         <div className="w-full lg:w-1/2">
           <h1 className="text-white font-[900] text-[30px] lg:text-[40px] leading-[40px] lg:leading-[60px] uppercase"> STAY UPTO DATE ABOUT OUR LATEST OFFERS </h1>
         </div>

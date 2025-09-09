@@ -7,7 +7,9 @@ import { Outlet } from 'react-router-dom';
 export default function BlankLayout() {
   return<>
   <Navbar/>
-  <Outlet></Outlet>
+  <div className="pt-24">
+    <Outlet></Outlet>
+  </div>
   <Footer/>
   </>
 }
