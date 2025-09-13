@@ -14,6 +14,7 @@ import NotFound from './components/NotFound/NotFound';
 import BlankLayout from './components/blankLayout/blankLayout';
 import UserContextProvider, { UserContext } from './context/userContext';
 import ProtectedRoute from './components/ProtectedRoute/ProtectedRoute';
+import BrandProducts from './components/BrandProducts/BrandProducts';
 
 function App() {
   let router = createBrowserRouter([
@@ -23,11 +24,12 @@ function App() {
         { path: 'products', element: <ProtectedRoute> <Products/> </ProtectedRoute> },
         { path: 'categories/:categoryName', element: <ProtectedRoute> <Categories/> </ProtectedRoute> },
         { path: 'cart', element: <ProtectedRoute> <Cart/> </ProtectedRoute> },
-        { path: 'brands', element: <ProtectedRoute> <Brands /> </ProtectedRoute> },
-        { path: 'productDetails/:id/:category', element: <ProtectedRoute> <ProductDetails /> </ProtectedRoute> },
-        { path: 'login', element: <Login /> },
-        { path: 'register', element: <Register /> },
-        { path: '*', element: <NotFound /> }
+        { path: 'brands', element: <ProtectedRoute> <Brands/> </ProtectedRoute> },
+        { path: 'brandProducts/:id', element: <ProtectedRoute> <BrandProducts/> </ProtectedRoute> },
+        { path: 'productDetails/:id/:category', element: <ProtectedRoute> <ProductDetails/> </ProtectedRoute> },
+        { path: 'login', element: <Login/> },
+        { path: 'register', element: <Register/> },
+        { path: '*', element: <NotFound/> }
       ]
     },
   ]);

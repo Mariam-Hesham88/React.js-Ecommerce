@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import style from "./Brands.module.css";
 import axios from 'axios';
+import { Link } from 'react-router-dom';
 
 export default function Brands() {
   let [brands, setBrands] = useState([]);
@@ -36,7 +37,9 @@ export default function Brands() {
         <div className='flex flex-wrap justify-center'>
           {brands.map((brand) =>
             <div className="w-1/4 bg-white hover:bg-gray-300 duration-[0.5s] cr rounded-2xl m-2 py-8 px-6">
-              <h1 className='text-[30px] font-[700] text-center hover:text-[42px] duration-[0.5s]'>{brand.name}</h1>
+              <Link to={`/brandProducts/${brand._id}`}>
+                <h1 className='text-[30px] font-[700] text-center hover:text-[42px] duration-[0.5s]'>{brand.name}</h1>
+              </Link>
             </div>
           )}
         </div>
