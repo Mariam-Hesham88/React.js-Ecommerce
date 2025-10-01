@@ -13,29 +13,35 @@ import ProductDetails from './components/ProductDetails/ProductDetails';
 import NotFound from './components/NotFound/NotFound';
 import BlankLayout from './components/blankLayout/blankLayout';
 import UserContextProvider, { UserContext } from './context/userContext';
+import CartContextProvider from './context/CartContext';
 import ProtectedRoute from './components/ProtectedRoute/ProtectedRoute';
 import BrandProducts from './components/BrandProducts/BrandProducts';
+import { Toaster } from 'react-hot-toast';
+
 
 function App() {
   let router = createBrowserRouter([
     {
       path: '', element: <BlankLayout />, children: [
-        { index: true, element: <ProtectedRoute> <Home/> </ProtectedRoute> },
-        { path: 'products', element: <ProtectedRoute> <Products/> </ProtectedRoute> },
-        { path: 'categories/:categoryName', element: <ProtectedRoute> <Categories/> </ProtectedRoute> },
-        { path: 'cart', element: <ProtectedRoute> <Cart/> </ProtectedRoute> },
-        { path: 'brands', element: <ProtectedRoute> <Brands/> </ProtectedRoute> },
-        { path: 'brandProducts/:id', element: <ProtectedRoute> <BrandProducts/> </ProtectedRoute> },
-        { path: 'productDetails/:id/:category', element: <ProtectedRoute> <ProductDetails/> </ProtectedRoute> },
-        { path: 'login', element: <Login/> },
-        { path: 'register', element: <Register/> },
-        { path: '*', element: <NotFound/> }
+        { index: true, element: <ProtectedRoute> <Home /> </ProtectedRoute> },
+        { path: 'products', element: <ProtectedRoute> <Products /> </ProtectedRoute> },
+        { path: 'categories/:categoryName', element: <ProtectedRoute> <Categories /> </ProtectedRoute> },
+        { path: 'cart', element: <ProtectedRoute> <Cart /> </ProtectedRoute> },
+        { path: 'brands', element: <ProtectedRoute> <Brands /> </ProtectedRoute> },
+        { path: 'brandProducts/:id', element: <ProtectedRoute> <BrandProducts /> </ProtectedRoute> },
+        { path: 'productDetails/:id/:category', element: <ProtectedRoute> <ProductDetails /> </ProtectedRoute> },
+        { path: 'login', element: <Login /> },
+        { path: 'register', element: <Register /> },
+        { path: '*', element: <NotFound /> }
       ]
     },
   ]);
 
-  return <UserContextProvider>
-    <RouterProvider router={router}></RouterProvider>
+  return   <UserContextProvider>
+    <CartContextProvider>
+      <RouterProvider router={router}></RouterProvider>
+      <Toaster/>
+    </CartContextProvider>
   </UserContextProvider>
 
 }

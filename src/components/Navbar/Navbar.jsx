@@ -85,7 +85,7 @@ export default function Navbar() {
               className="pl-10 border rounded-[24px] py-2 px-3 w-[280px] lg:w-[400px] bg-gray-100"
             />
           </div>
-          <i className="fa-solid fa-cart-shopping text-xl"></i>
+          <Link to={'/cart'}><i className="fa-solid fa-cart-shopping text-xl"></i></Link>
           <button className="mainBtn" onClick={handleLogOut}>Sign Out</button>
         </div> 
         :
