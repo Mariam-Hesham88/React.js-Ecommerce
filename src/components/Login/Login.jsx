@@ -24,8 +24,6 @@ export default function Login() {
         if (apiResponse?.data?.message === 'success') {
           localStorage.setItem('userToken', apiResponse.data.token);
           setUserLogin(apiResponse.data.token);
-          console.log(apiResponse);
-          console.log(localStorage.getItem('userToken'));
           navigate('/');
           setIsLoading(false);
         }
@@ -33,7 +31,6 @@ export default function Login() {
       .catch((error) => {
         setIsLoading(false);
         setApiError(error?.response?.data?.message);
-        console.log(error.response?.data);
       });
   }
 

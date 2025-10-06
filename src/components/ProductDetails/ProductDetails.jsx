@@ -11,6 +11,7 @@ export default function ProductDetails() {
   let [relatedProduct, setRelatedProduct] = useState([]);
   let { id, category } = useParams();
   let [isLoading, setIsLoading] = useState(false);
+    let [btnIsLoading, setBtnIsLoading] = useState(false);
   let { addToCart } = useContext(CartContext)
 
   function getProductDetails(id) {
@@ -43,21 +44,19 @@ export default function ProductDetails() {
   async function addProductToCart(productId) {
     try {
       let response = await addToCart(productId);
-
-      // console.log(response.data); 
-
+      setBtnIsLoading(true);
       if (response?.data?.status === "success") {
-        console.log("added");
         toast.success(response?.data?.message || "added", {
           duration: 3000,
           position: 'bottom-right',
         });
+        setBtnIsLoading(false);
       } else {
-        console.log("error");
         toast.error(response?.data?.message || "error", {
           duration: 3000,
           position: 'bottom-right',
         });
+        setBtnIsLoading(false);
       }
     } catch (err) {
       console.error(err);
@@ -104,7 +103,11 @@ export default function ProductDetails() {
               <span className='font-[600] text-[18px]'>{productDetails?.price} LE</span>
               <span> {productDetails?.ratingsAverage} <i className="fa-solid fa-star text-yellow-400"></i></span>
             </div>
-            <button onClick={() => addProductToCart(productDetails?.id)} className="mainBtn w-full">Add To Cart</button>
+            {/* <button onClick={() => addProductToCart(productDetails?.id)} className="mainBtn w-full">Add To Cart</button>
+             */}
+             <button onClick={() => addProductToCart(productDetails?.id)} type='submit' className='mainBtn m-2 w-[95%]' disabled={btnIsLoading}>
+              Add to cart
+            </button>
           </div>
         </div>
       </section>

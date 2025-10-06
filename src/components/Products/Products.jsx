@@ -8,6 +8,7 @@ import toast from 'react-hot-toast';
 export default function Products() {
   let [products, setProducts] = useState([]);
   let [isLoading, setIsLoading] = useState(false);
+  let [btnIsLoading, setBtnIsLoading] = useState(false);
   let { addToCart } = useContext(CartContext);
 
   function getAllProducts() {
@@ -18,7 +19,6 @@ export default function Products() {
         setIsLoading(false);
       })
       .catch((error) => {
-        console.log(error);
         setIsLoading(false);
       })
   }
@@ -28,10 +28,9 @@ export default function Products() {
   }, []);
 
 async function addProductToCart(productId) {
+  setBtnIsLoading(true)
   try {
     let response = await addToCart(productId);
-
-    // console.log(response.data); 
 
     if (response?.data?.status === "success") {
       console.log("added");
@@ -39,12 +38,14 @@ async function addProductToCart(productId) {
         duration: 3000,
         position: 'bottom-right',
       });
+      setBtnIsLoading(false)
     } else {
       console.log("error");
       toast.error(response?.data?.message || "error", {
         duration: 3000,
         position: 'bottom-right',
       });
+      setBtnIsLoading(false)
     }
   } catch (err) {
     console.error(err);
@@ -79,7 +80,10 @@ async function addProductToCart(productId) {
                   </div>
                 </div>
               </Link>
-              <button className='mainBtn m-2 w-[95%]' onClick={()=>addProductToCart(product.id)}>Add to cart</button>
+              {/* <button className='mainBtn m-2 w-[95%]' onClick={()=>addProductToCart(product.id)}>Add to cart</button> */}
+              <button onClick={()=>addProductToCart(product.id)} type='submit' className='mainBtn m-2 w-[95%]' disabled={btnIsLoading}>
+              Add to cart
+            </button>
             </div>
           </div>
         )}

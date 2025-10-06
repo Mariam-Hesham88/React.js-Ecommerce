@@ -13,11 +13,9 @@ export default function BrandProducts() {
     axios.get(`https://ecommerce.routemisr.com/api/v1/products`)
       .then(({ data }) => {
         setProducts(data.data);
-        console.log(data.data);
         setIsLoading(false);
       })
       .catch((error) => {
-        console.log(error);
         setIsLoading(false);
       })
   }

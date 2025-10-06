@@ -15,18 +15,15 @@ export default function Navbar() {
   function getAllCategories() {
     axios.get(`https://ecommerce.routemisr.com/api/v1/categories`)
       .then(({ data }) => {
-        console.log(data.data);
         setCategories(data.data);
       })
       .catch((error) => {
-        console.log(error);
       })
   }
 
   function handleLogOut() {
     localStorage.removeItem('userToken');
     setUserLogin(null);
-    // setUserLogin(false);
     navigate('/login');
   }
 

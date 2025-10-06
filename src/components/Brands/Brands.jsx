@@ -13,11 +13,9 @@ export default function Brands() {
       .then(({ data }) => {
         setIsLoading(false);
         setBrands(data.data);
-        console.log(data.data);
       })
       .catch((error) => {
         setIsLoading(false);
-        console.log(error);
       })
   }
 

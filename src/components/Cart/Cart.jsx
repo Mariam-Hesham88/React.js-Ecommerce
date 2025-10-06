@@ -2,6 +2,7 @@ import React, { useContext, useEffect, useState } from 'react'
 import style from "./Cart.module.css";
 import { CartContext } from '../../context/CartContext';
 import { Link } from 'react-router-dom';
+import { section } from 'framer-motion/client';
 
 export default function Cart() {
   let [cartDetails, setCartDetails] = useState(null);
@@ -13,6 +14,8 @@ export default function Cart() {
     let response = await getCartItems();
     setIsLoading(false);
     setCartDetails(response?.data);
+    // console.log(response?.data);
+    
   }
 
   async function deleteItem(productId) {
@@ -62,10 +65,12 @@ export default function Cart() {
           </section>
         ) : (
 
-          <div className="relative w-[80%] mx-auto overflow-x-auto shadow-md sm:rounded-lg">
-            <div className="flex justify-end pb-4">
+          <section className='flex flex-wrap justify-center'> 
+            <div className="flex justify-between items-center pb-4 w-[80%]">
               <button onClick={() => deleteCart()} className='mainBtn'>Clear Cart</button>
+              <span className='font-[500] text-[28px]'>Total Price: ${cartDetails?.data?.totalCartPrice}</span>
             </div>
+            <div className="relative w-[80%] mx-auto overflow-x-auto shadow-md sm:rounded-lg">
             <table className="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
               <thead className="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
                 <tr>
@@ -165,8 +170,11 @@ export default function Cart() {
                 ))}
               </tbody>
             </table>
-            <button className='mainBtn w-full mt-5'>Confirm the order</button>
           </div>
+          <div className="flex items-center pb-4 w-[80%]">
+              <Link to={'/checkout'} className='mainBtn w-full mt-5 text-center'>Checkout</Link>
+            </div>
+          </section>
         )}
       </section>
     </>
