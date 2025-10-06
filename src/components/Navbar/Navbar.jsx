@@ -2,7 +2,7 @@ import React, { useContext, useEffect, useState } from 'react'
 import style from "./Navbar.module.css";
 import { Link, NavLink, useNavigate } from 'react-router-dom';
 import { AnimatePresence, motion } from "framer-motion";
-import { UserContext } from '../../context/userContext';
+import { UserContext } from '../../context/UserContext';
 import { Dropdown, DropdownItem } from "flowbite-react";
 import axios from 'axios';
 
