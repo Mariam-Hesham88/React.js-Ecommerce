@@ -4,7 +4,7 @@ import { Link, useNavigate } from 'react-router-dom';
 import { useFormik } from 'formik';
 import * as Yup from 'yup';
 import axios from 'axios';
-import { UserContext } from '../../context/userContext';
+import { UserContext } from '../../context/UserContext';
 
 export default function Login() {
   let navigate = useNavigate();
