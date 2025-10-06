@@ -3,11 +3,10 @@ import './App.css'
 import { createBrowserRouter, RouterProvider } from 'react-router-dom'
 
 import BlankLayout from './components/blankLayout/blankLayout'
-import UserContextProvider from './context/userContext'
+import UserContextProvider from './context/UserContext'
 import CartContextProvider from './context/CartContext'
 import ProtectedRoute from './components/ProtectedRoute/ProtectedRoute'
 import { Toaster } from 'react-hot-toast'
-// import Checkout from './components/checkout/checkout'
 
 // Lazy imports
 const Login = lazy(() => import('./components/Login/Login'))
